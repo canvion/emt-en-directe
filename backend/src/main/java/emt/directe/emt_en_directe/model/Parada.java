@@ -1,0 +1,50 @@
+package emt.directe.emt_en_directe.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "paradas")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Parada {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
+    private String nombre;
+
+    @Column(nullable = false)
+    private Double latitud;
+
+    @Column(nullable = false)
+    private Double longitud;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "linea_id", nullable = false)
+    private Linea linea;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+}
