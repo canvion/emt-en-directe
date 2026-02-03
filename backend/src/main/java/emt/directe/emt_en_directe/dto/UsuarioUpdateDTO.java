@@ -11,10 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UsuarioUpdateDTO {
 
-    @Email(message = "El email debe ser válido")
-    @Size(max = 100, message = "El email no puede superar los 100 caracteres")
+    @Email(message = "el mail debe ser válido")
     private String email;
 
-    @Size(min = 6, max = 100, message = "La contraseña debe tener entre 6 y 100 caracteres")
+    @Size(min = 6, message = "la contraseña debe tener mínimo 6 caracteres")
     private String password;
 }
