@@ -40,18 +40,6 @@ public class ParadaController {
         }
     }
 
-    @GetMapping("/linea/{lineaId}")
-    public ResponseEntity<?> getParadasByLineaId(@PathVariable Long lineaId) {
-        try {
-            List<ParadaResponseDTO> paradas = paradaService.getParadasByLineaId(lineaId);
-            return ResponseEntity.ok(paradas);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
     @PostMapping
     public ResponseEntity<?> createParada(@Valid @RequestBody ParadaRequestDTO requestDTO) {
         try {

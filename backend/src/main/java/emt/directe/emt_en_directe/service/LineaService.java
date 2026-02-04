@@ -68,13 +68,24 @@ public class LineaService {
     }
 
     private LineaResponseDTO convertToResponseDTO(Linea linea) {
-        LineaResponseDTO dto = new LineaResponseDTO();
-        dto.setId(linea.getId());
-        dto.setNumero(linea.getNumero());
-        dto.setNombre(linea.getNombre());
-        dto.setColor(linea.getColor());
-        dto.setCreatedAt(linea.getCreatedAt());
-        dto.setUpdatedAt(linea.getUpdatedAt());
-        return dto;
+        List<LineaResponseDTO.ParadaResumen> paradas = linea.getLineasParadas().stream()
+                .sorted((lp1, lp2) -> lp1.getOrden().compareTo(lp2.getOrden()))
+                .map(lp -> new LineaResponseDTO.ParadaResumen(
+                        lp.getParada().getId(),
+                        lp.getParada().getCodigo(),
+                        lp.getParada().getNombre(),
+                        lp.getOrden()
+                ))
+                .collect(Collectors.toList());
+
+        return new LineaResponseDTO(
+                linea.getId(),
+                linea.getNumero(),
+                linea.getNombre(),
+                linea.getColor(),
+                linea.getCreatedAt(),
+                linea.getUpdatedAt(),
+                paradas
+        );
     }
 }

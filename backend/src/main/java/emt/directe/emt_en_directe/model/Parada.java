@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "paradas")
@@ -27,9 +29,11 @@ public class Parada {
     @Column(nullable = false)
     private Double longitud;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "linea_id", nullable = false)
-    private Linea linea;
+    @Column(nullable = false, unique = true, length = 10)
+   private String codigo;
+
+    @OneToMany(mappedBy = "parada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LineaParada> lineasParadas = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

@@ -26,6 +26,7 @@ public class ParadaRequestDTO {
     @DecimalMax(value = "180.0", message = "la longitud debe ser menor o igual a 180")
     private Double longitud;
 
-    @NotNull(message = "el ID de la línea es obligatorio")
-    private Long lineaId;
+    @NotBlank(message = "el código de la parada es obligatorio")
+    private String codigo;
+
 }

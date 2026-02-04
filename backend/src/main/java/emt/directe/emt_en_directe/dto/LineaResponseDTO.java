@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,4 +19,18 @@ public class LineaResponseDTO {
     private String color;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    //añadimos la información de las paradas
+    private List<ParadaResumen> paradas = new ArrayList<>();
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ParadaResumen {
+        private Long id;
+        private String codigo;
+        private String nombre;
+        private Integer orden;
+    }
+
 }

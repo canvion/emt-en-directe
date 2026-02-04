@@ -93,13 +93,13 @@ public class UsuarioService {
 
     //convertir a responseDTO
     private UsuarioResponseDTO convertToResponseDTO(Usuario usuario) {
-        UsuarioResponseDTO dto = new UsuarioResponseDTO();
-        dto.setId(usuario.getId());
-        dto.setUsername(usuario.getUsername());
-        dto.setEmail(usuario.getEmail());
-        dto.setRol(usuario.getRol());
-        dto.setCreatedAt(usuario.getCreatedAt());
-        dto.setUpdatedAt(usuario.getUpdatedAt());
-        return dto;
+        return new UsuarioResponseDTO(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getEmail(),
+                usuario.getRol(),
+                usuario.getCreatedAt(),
+                usuario.getUpdatedAt()
+        );
     }
 }
