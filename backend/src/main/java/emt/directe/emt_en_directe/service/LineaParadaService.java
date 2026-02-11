@@ -1,6 +1,5 @@
 package emt.directe.emt_en_directe.service;
 
-import emt.directe.emt_en_directe.dto.CrearLineaParadaDTO;
 import emt.directe.emt_en_directe.dto.LineaParadaDTO;
 import emt.directe.emt_en_directe.model.Linea;
 import emt.directe.emt_en_directe.model.LineaParada;

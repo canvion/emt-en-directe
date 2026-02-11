@@ -1,6 +1,5 @@
 package emt.directe.emt_en_directe.service;
 
-import emt.directe.emt_en_directe.dto.LineaRequestDTO;
 import emt.directe.emt_en_directe.dto.LineaResponseDTO;
 import emt.directe.emt_en_directe.model.Linea;
 import emt.directe.emt_en_directe.repository.LineaRepository;

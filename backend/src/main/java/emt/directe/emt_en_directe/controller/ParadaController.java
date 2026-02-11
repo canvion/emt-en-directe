@@ -1,6 +1,5 @@
 package emt.directe.emt_en_directe.controller;
 
-import emt.directe.emt_en_directe.dto.ParadaRequestDTO;
 import emt.directe.emt_en_directe.dto.ParadaResponseDTO;
 import emt.directe.emt_en_directe.service.ParadaService;
 import jakarta.validation.Valid;
