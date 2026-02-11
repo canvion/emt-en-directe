@@ -22,14 +22,14 @@ public class Bus {
     @JoinColumn(name = "linea_id", nullable = false)
     private Linea linea;
 
-    @Column(nullable = false, unique = true, length = 20)
-    private String matricula;
-
     @Column(nullable = false)
     private Double latitud;
 
     @Column(nullable = false)
     private Double longitud;
+
+    @Column(nullable = false, length = 10)
+    private String sentido = "IDA";
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
