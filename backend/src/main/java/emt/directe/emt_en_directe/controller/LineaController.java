@@ -2,7 +2,6 @@ package emt.directe.emt_en_directe.controller;
 
 import emt.directe.emt_en_directe.dto.LineaResponseDTO;
 import emt.directe.emt_en_directe.service.LineaService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,45 +38,4 @@ public class LineaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-    @PostMapping
-    public ResponseEntity<?> createLinea(@Valid @RequestBody LineaRequestDTO requestDTO) {
-        try {
-            LineaResponseDTO nuevaLinea = lineaService.createLinea(requestDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(nuevaLinea);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("error al crear la línea");
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteLinea(@PathVariable Long id) {
-        try {
-            lineaService.deleteLinea(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<?> updateLinea(
-            @PathVariable Long id,
-            @Valid @RequestBody LineaRequestDTO requestDTO) {
-        try {
-            LineaResponseDTO lineaActualizada = lineaService.updateLinea(id, requestDTO);
-            return ResponseEntity.ok(lineaActualizada);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("error al actualizar la línea");
-        }
-    }
-
 }

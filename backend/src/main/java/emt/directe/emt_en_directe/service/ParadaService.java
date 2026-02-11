@@ -27,37 +27,6 @@ public class ParadaService {
         return convertToResponseDTO(parada);
     }
 
-    public ParadaResponseDTO createParada(ParadaRequestDTO requestDTO) {
-        Parada parada = new Parada();
-        parada.setNombre(requestDTO.getNombre());
-        parada.setCodigo(requestDTO.getCodigo());
-        parada.setLatitud(requestDTO.getLatitud());
-        parada.setLongitud(requestDTO.getLongitud());
-        Parada savedParada = paradaRepository.save(parada);
-
-        return convertToResponseDTO(savedParada);
-    }
-
-    public ParadaResponseDTO updateParada(Long id, ParadaRequestDTO requestDTO) {
-        Parada parada = paradaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("parada no encontrada con el id: " + id));
-
-        parada.setNombre(requestDTO.getNombre());
-        parada.setCodigo(requestDTO.getCodigo());
-        parada.setLatitud(requestDTO.getLatitud());
-        parada.setLongitud(requestDTO.getLongitud());
-        Parada updatedParada = paradaRepository.save(parada);
-
-        return convertToResponseDTO(updatedParada);
-    }
-
-    public void deleteParada(Long id) {
-        if (!paradaRepository.existsById(id)) {
-            throw new RuntimeException("parada no encontrada con el id: " + id);
-        }
-        paradaRepository.deleteById(id);
-    }
-
     private ParadaResponseDTO convertToResponseDTO(Parada parada) {
         List<ParadaResponseDTO.LineaResumen> lineas = parada.getLineasParadas().stream()
                 .map(lp -> new ParadaResponseDTO.LineaResumen(
