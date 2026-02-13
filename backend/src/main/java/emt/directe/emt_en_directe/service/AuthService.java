@@ -1,6 +1,6 @@
 package emt.directe.emt_en_directe.service;
 
-import emt.directe.emt_en_directe.config.JwtTokenUtil;
+import emt.directe.emt_en_directe.security.JwtTokenUtil;
 import emt.directe.emt_en_directe.dto.JwtResponse;
 import emt.directe.emt_en_directe.dto.LoginRequest;
 import emt.directe.emt_en_directe.model.Usuario;
@@ -26,7 +26,7 @@ public class AuthService {
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
             );
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String jwt = jwtTokenUtil.generateToken(userDetails.getUsername());
+            String jwt = jwtTokenUtil.generateToken(userDetails);
             Usuario usuario = usuarioRepository.findByUsername(loginRequest.getUsername())
                     .orElseThrow(() -> new RuntimeException("usuari no trobat"));
             return new JwtResponse(jwt, usuario.getId(), usuario.getUsername(), usuario.getEmail(), usuario.getRol());
