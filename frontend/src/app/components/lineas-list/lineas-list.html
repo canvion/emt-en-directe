@@ -1,0 +1,17 @@
+<div style="padding: 20px;">
+  <h2>Línies d'Autobús</h2>
+
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+
+  <mat-list>
+    <mat-list-item *ngFor="let linea of lineas">
+      <mat-card style="width: 100%; margin-bottom: 10px;">
+        <mat-card-header>
+          <mat-card-title> <span [style.color]="linea.color">línia {{ linea.numero }}</span> </mat-card-title>
+          <mat-card-subtitle>{{ linea.nombre }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content> <p *ngIf="linea.horarios"> horaris: {{ linea.horarios }}</p> </mat-card-content>
+      </mat-card>
+    </mat-list-item>
+  </mat-list>
+</div>
