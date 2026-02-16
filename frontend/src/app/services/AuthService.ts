@@ -15,19 +15,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<JwtResponse> {
-    const credentials: LoginRequest = { email, password };
+  login(username: string, password: string): Observable<JwtResponse> {
+    const credentials: LoginRequest = { username, password };
     return this.http.post<JwtResponse>(`${this.baseUrl}/login`, credentials).pipe(
       tap(response => {
         localStorage.setItem('token', response.token);
-        localStorage.setItem('nombre', response.usuario.nombre);
-        localStorage.setItem('email', response.usuario.email);
+        localStorage.setItem('username', response.username);
+        localStorage.setItem('email', response.email);
       })
     );
   }
 
-  register(nombre: string, email: string, password: string): Observable<Usuario> {
-    const data: RegisterRequest = { nombre, email, password };
+  register(username: string, email: string, password: string): Observable<Usuario> {
+    const data: RegisterRequest = { username, email, password };
     return this.http.post<Usuario>(`${this.usuariosUrl}/register`, data);
   }
 

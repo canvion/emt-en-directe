@@ -1,0 +1,39 @@
+<div class="register-container">
+
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>EMT en Directe</mat-card-title>
+      <mat-card-subtitle>crea el teu compte</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" [(ngModel)]="userData.username" name="username" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>mail</mat-label>
+          <input matInput type="email" [(ngModel)]="userData.email" name="email" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>contrasenya</mat-label>
+          <input matInput type="password" [(ngModel)]="userData.password" name="password" required>
+        </mat-form-field>
+
+        <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+
+        <button mat-raised-button color="primary" type="submit" class="full-width">
+          registrar-se
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-button (click)="goToLogin()">ja tens compte? Inicia sessió</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
