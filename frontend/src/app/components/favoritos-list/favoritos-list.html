@@ -1,0 +1,24 @@
+<div style="padding: 20px;">
+  <h2>Mis paradas favoritas</h2>
+  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  <p *ngIf="!loading && favoritos.length === 0">no tens favorits encara!!</p>
+
+  <mat-list>
+    <mat-list-item *ngFor="let favorito of favoritos">
+      <mat-card style="width: 100%; margin-bottom: 10px;">
+        <mat-card-header>
+          <mat-card-title>{{ favorito.parada.nombre }}</mat-card-title>
+          <mat-card-subtitle>codi: {{ favorito.parada.codigo }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>latitud: {{ favorito.parada.latitud }}</p>
+          <p>longitud: {{ favorito.parada.longitud }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn" (click)="eliminarFavorito(favorito.id)">
+            <mat-icon>delete</mat-icon> eliminar </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-list-item>
+  </mat-list>
+</div>
