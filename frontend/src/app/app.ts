@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar';
@@ -12,15 +12,28 @@ import { filter } from 'rxjs/operators';
   styleUrl: './app.css'
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   mostrarNavbar = false;
 
   constructor(private router: Router) {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.mostrarNavbar = !['/login', '/register'].includes(event.url);
+    ).subscribe(() => {
+      this.comprovarNavbar();
     });
   }
+
+  //filtramos url para mostrar el navbar o no.
+  comprovarNavbar() {
+    const rutaActual = this.router.url;
+    const hiHaToken = localStorage.getItem('token') !== null;
+
+    this.mostrarNavbar = hiHaToken && !['/login', '/register'].includes(rutaActual);
+  }
+
+  ngOnInit() {
+    this.comprovarNavbar();
+  }
+
 }
