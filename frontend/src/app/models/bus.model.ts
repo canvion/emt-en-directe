@@ -1,11 +1,10 @@
-export interface Bus{
+export interface Bus {
   id: number;
   matricula: string;
   latitud: number;
   longitud: number;
-  linea: {
-    id: number;
-    nombre: string;
-    numero: string;
-  }
+  lineaId: number;
+  lineaNumero: string;
+  lineaNombre: string;
+  lineaColor: string;
 }

@@ -15,8 +15,4 @@ export class ParadaService {
   getAllParadas(): Observable<Parada[]> {
     return this.http.get<Parada[]>(this.baseUrl);
   }
-
-  getParadasByLinea(lineaId: number): Observable<Parada[]> {
-    return this.http.get<Parada[]>(`${this.baseUrl}/linea/${lineaId}`);
-  }
 }

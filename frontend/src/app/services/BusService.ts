@@ -10,9 +10,10 @@ import { Bus } from '../models/bus.model';
 
 export class BusService {
   private baseUrl = `${API_CONFIG.baseUrl}/buses`;
+
   constructor(private http: HttpClient) {}
 
-  getBusesByLinea(lineaId: number): Observable<Bus[]> {
-    return this.http.get<Bus[]>(`${this.baseUrl}/linea/${lineaId}`);
+  getBusByLinea(lineaId: number): Observable<Bus> {
+    return this.http.get<Bus>(`${this.baseUrl}/linea/${lineaId}`);
   }
 }
