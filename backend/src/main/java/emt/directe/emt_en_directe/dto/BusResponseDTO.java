@@ -17,6 +17,5 @@ public class BusResponseDTO {
     private String lineaColor;
     private Double latitud;
     private Double longitud;
-    private String sentido;
     private LocalDateTime updatedAt;
 }

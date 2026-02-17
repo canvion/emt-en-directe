@@ -28,8 +28,8 @@ public class Bus {
     @Column(nullable = false)
     private Double longitud;
 
-    @Column(nullable = false, length = 10)
-    private String sentido = "IDA";
+    @Column(nullable = false)
+    private Integer indicePunto = 0;
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;

@@ -31,6 +31,7 @@ public class LineaResponseDTO {
         private String codigo;
         private String nombre;
         private Integer orden;
+        private Boolean esParada;
     }
 
 }

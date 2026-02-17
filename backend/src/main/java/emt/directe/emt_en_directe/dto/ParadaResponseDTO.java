@@ -18,6 +18,7 @@ public class ParadaResponseDTO {
     private String codigo;
     private Double latitud;
     private Double longitud;
+    private Boolean esParada;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

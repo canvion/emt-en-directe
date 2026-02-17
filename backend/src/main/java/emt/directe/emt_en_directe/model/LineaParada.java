@@ -26,4 +26,8 @@ public class LineaParada {
 
     @Column(nullable = false)
     private Integer orden;
+
+    //diferenciamos entre paradas y puntos para hacer el pooling y simular el movimiento del bus
+    @Column(nullable = false)
+    private Boolean esParada = false;
 }

@@ -28,6 +28,14 @@ public class ParadaService {
     }
 
     private ParadaResponseDTO convertToResponseDTO(Parada parada) {
+        // Obtener el valor de esParada desde LineaParada (si existe alguna relación)
+        Boolean esParada;
+        if (parada.getLineasParadas().isEmpty()) {
+            esParada = false;
+        } else {
+            esParada = parada.getLineasParadas().get(0).getEsParada();
+        }
+
         List<ParadaResponseDTO.LineaResumen> lineas = parada.getLineasParadas().stream()
                 .map(lp -> new ParadaResponseDTO.LineaResumen(
                         lp.getLinea().getId(),
@@ -44,6 +52,7 @@ public class ParadaService {
                 parada.getCodigo(),
                 parada.getLatitud(),
                 parada.getLongitud(),
+                esParada,
                 parada.getCreatedAt(),
                 parada.getUpdatedAt(),
                 lineas
