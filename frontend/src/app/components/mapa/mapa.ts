@@ -1,12 +1,18 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import * as L from 'leaflet';
 import { ParadaService } from '../../services/ParadaService';
 import { BusService } from '../../services/BusService';
 import { FavoritoService } from '../../services/FavoritoService';
 import { LineaService } from '../../services/LineaService';
+import { AuthService } from '../../services/AuthService';
 import { Bus } from '../../models/bus.model';
 import { Parada } from '../../models/parada.model';
+import { Favorito } from '../../models/favorito.model';
+import { Linea } from '../../models/linea.model';
+import { API_CONFIG } from '../../config/api.config';
 
 @Component({
   selector: 'app-mapa',
@@ -24,11 +30,26 @@ export class MapaComponent implements OnInit {
   private lineaService = inject(LineaService);
   private map: any;
   private busMarkers: L.Marker[] = [];
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private http = inject(HttpClient);
+  private favoritosMap: Map<number, number> = new Map();
+
+  //cargamos las paradas, los buses, los favoritos y las lineas y el username
+  lineas: Linea[] = [];
+  favoritos: any[] = [];
+
+  mostrarLineas = false;
+  mostrarFavoritos = false;
+
+  username = localStorage.getItem('username') || 'Usuari';
 
   ngOnInit() {
     this.initMap();
     this.cargarParadas();
     this.iniciarPolling();
+    this.cargarFavoritos();
+    this.cargarLineas();
   }
 
   //mapa de palma
@@ -59,6 +80,10 @@ export class MapaComponent implements OnInit {
   }
 
   mostrarParadas(paradas: Parada[]) {
+    (window as any).toggleFavorit = (paradaId: number) => {
+      this.toggleFavorito(paradaId);
+    };
+
     paradas.forEach(parada => {
 
       const marker = L.marker([parada.latitud, parada.longitud], {
@@ -68,18 +93,30 @@ export class MapaComponent implements OnInit {
           iconSize: [25, 25],  iconAnchor: [12, 12]
         })
       }).addTo(this.map);
-
-      //ventana con informacion de la parada
-      marker.bindPopup(`
-        <b>${parada.nombre}</b><br>
-        Codi: ${parada.codigo}<br>
-        <button onclick="window.afegirFavorit(${parada.id})">🤍 añadir a favoritos</button>
-      `);
+      marker.bindPopup(this.crearPopup(parada));
     });
+  }
 
-    (window as any).afegirFavorit = (paradaId: number) => {
-      this.afegirFavorit(paradaId);
-    };
+  crearPopup(parada: Parada): string {
+
+    //alternamos el corazon segun si la parada es favorita o no
+    const esFavorito = this.favoritosMap.has(parada.id);
+    const corazon = esFavorito ? '❤️' : '🤍';
+    const texto = esFavorito ? 'eliminar de favorits' : 'afegir a favorits';
+
+    return ` <div class="popup-content">
+      <b>${parada.nombre}</b><br>codi: ${parada.codigo}<br>
+      <button onclick="window.toggleFavorit(${parada.id})" class="favorito-btn"> ${corazon} ${texto} </button> </div> `;
+  }
+
+  //recargamos rapidamente para que cambie el corazon.
+  recargarParadas() {
+    this.map.eachLayer((layer: any) => {
+      if (layer instanceof L.Marker && layer.options.icon?.options?.className === 'parada-icon') {
+        this.map.removeLayer(layer);
+      }
+    });
+    this.cargarParadas();
   }
 
   //marcador para los buses en la posición donde estén
@@ -99,7 +136,6 @@ export class MapaComponent implements OnInit {
     this.busMarkers.push(marker);
   }
 
-
   actualizarBuses() {
 
     this.busMarkers.forEach(marker => marker.remove());
@@ -118,11 +154,85 @@ export class MapaComponent implements OnInit {
     });
   }
 
-  //añadimos a favoritos del usuario la para que seleccione
-  afegirFavorit(paradaId: number) {
-    this.favoritoService.addFavorito(paradaId).subscribe({
-      next: () => alert('parada añadida a favoritos!!️'),
-      error: () => alert('error al añadirla a favoritos')
+  cargarFavoritos() {
+    this.favoritoService.getFavoritos().subscribe({
+      next: (favoritos) => {
+        this.favoritos = favoritos;
+        this.favoritosMap.clear();
+        favoritos.forEach((fav: any) => {
+          this.favoritosMap.set(fav.paradaId, fav.id);
+        });
+      },
+      error: (err) => console.error('error carregant favorits', err)
     });
+  }
+
+  toggleFavorito(paradaId: number) {
+    if (this.favoritosMap.has(paradaId)) {
+      const favoritoId = this.favoritosMap.get(paradaId)!;
+      this.favoritoService.deleteFavorito(favoritoId).subscribe({
+        next: () => {
+          this.favoritosMap.delete(paradaId);
+          this.cargarFavoritos();
+          this.recargarParadas();
+        }
+      });
+    } else {
+      this.favoritoService.addFavorito(paradaId).subscribe({
+        next: (favorito) => {
+          this.favoritosMap.set(paradaId, favorito.id);
+          this.cargarFavoritos();
+          this.recargarParadas();
+        }
+      });
+    }
+  }
+
+  cargarLineas() {
+    this.lineaService.getAllLineas().subscribe({
+      next: (lineas) => {
+        this.lineas = lineas;
+      },
+      error: (err) => console.error('error al cargar las líneas', err)
+    });
+  }
+
+  eliminarFavorito(id: number) {
+    this.favoritoService.deleteFavorito(id).subscribe({
+      next: () => {
+        this.cargarFavoritos();
+        this.recargarParadas();
+      },
+      error: (err) => console.error('error eliminando el favorito!', err)
+    });
+  }
+
+  //funciones que hacen que se abra un menu u otro.
+  toggleLineas() {
+    this.mostrarLineas = !this.mostrarLineas;
+    this.mostrarFavoritos = false;
+  }
+
+  toggleFavoritos() {
+    this.mostrarFavoritos = !this.mostrarFavoritos;
+    this.mostrarLineas = false;
+  }
+
+  tancarLineas() {
+    this.mostrarLineas = false;
+  }
+
+  tancarFavoritos() {
+    this.mostrarFavoritos = false;
+  }
+
+  tancarTot() {
+    this.mostrarLineas = false;
+    this.mostrarFavoritos = false;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
