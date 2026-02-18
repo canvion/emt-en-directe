@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +21,5 @@ public class FavoritoResponseDTO {
     private Double paradaLatitud;
     private Double paradaLongitud;
     private LocalDateTime createdAt;
+    private List<String> lineas = new ArrayList<>();
 }

@@ -37,6 +37,9 @@ public class FavoritoService {
         Parada parada = paradaRepository.findById(requestDTO.getParadaId())
                 .orElseThrow(() -> new RuntimeException("parada no trobada amb l'id: " + requestDTO.getParadaId()));
 
+        boolean yaExiste = favoritoRepository.findByUsuarioId(usuarioId).stream()
+                .anyMatch(f -> f.getParada().getId().equals(requestDTO.getParadaId()));
+
         Favorito favorito = new Favorito();
         favorito.setUsuario(usuario);
         favorito.setParada(parada);
@@ -55,16 +58,23 @@ public class FavoritoService {
     }
 
     private FavoritoResponseDTO convertToResponseDTO(Favorito favorito) {
-        return new FavoritoResponseDTO(
-                favorito.getId(),
-                favorito.getUsuario().getId(),
-                favorito.getUsuario().getUsername(),
-                favorito.getParada().getId(),
-                favorito.getParada().getNombre(),
-                favorito.getParada().getCodigo(),
-                favorito.getParada().getLatitud(),
-                favorito.getParada().getLongitud(),
-                favorito.getCreatedAt()
-        );
-    }
+
+        FavoritoResponseDTO dto = new FavoritoResponseDTO();
+
+        dto.setId(favorito.getId());
+        dto.setUsuarioId(favorito.getUsuario().getId());
+        dto.setUsuarioUsername(favorito.getUsuario().getUsername());
+        dto.setParadaId(favorito.getParada().getId());
+        dto.setParadaNombre(favorito.getParada().getNombre());
+        dto.setParadaCodigo(favorito.getParada().getCodigo());
+        dto.setParadaLatitud(favorito.getParada().getLatitud());
+        dto.setParadaLongitud(favorito.getParada().getLongitud());
+        dto.setCreatedAt(favorito.getCreatedAt());
+
+        List<String> lineas = favorito.getParada().getLineasParadas().stream()
+                .map(lp -> lp.getLinea().getNumero() + " - " + lp.getLinea().getNombre())
+                .collect(Collectors.toList());
+        dto.setLineas(lineas);
+
+        return dto; }
 }

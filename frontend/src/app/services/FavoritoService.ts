@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, of} from 'rxjs';
 import { API_CONFIG } from '../config/api.config';
 import { Favorito, FavoritoRequest } from '../models/favorito.model';
 
@@ -23,5 +23,11 @@ export class FavoritoService {
 
   deleteFavorito(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  getFavoritoByParada(paradaId: number): Observable<Favorito | null> {
+    return this.http.get<Favorito>(`${this.baseUrl}/parada/${paradaId}`).pipe(
+      catchError(() => of(null))
+    );
   }
 }

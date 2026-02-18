@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/favoritos")
@@ -64,6 +65,26 @@ public class FavoritoController {
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/parada/{paradaId}")
+    public ResponseEntity<?> getFavoritoByParada(@PathVariable Long paradaId) {
+        try {
+            Long usuarioId = obtenerUsuarioIdAutenticado();
+            List<FavoritoResponseDTO> favoritos = favoritoService.getFavoritosByUsuarioId(usuarioId);
+
+            Optional<FavoritoResponseDTO> favorito = favoritos.stream()
+                    .filter(f -> f.getParadaId().equals(paradaId))
+                    .findFirst();
+
+            if (favorito.isPresent()) {
+                return ResponseEntity.ok(favorito.get());
+            } else {
+                return ResponseEntity.notFound().build();
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

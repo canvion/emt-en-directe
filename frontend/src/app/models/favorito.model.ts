@@ -8,6 +8,7 @@ export interface Favorito {
   paradaLatitud: number;
   paradaLongitud: number;
   createdAt: string;
+  lineas?: string[];
 }
 
 export interface FavoritoRequest {

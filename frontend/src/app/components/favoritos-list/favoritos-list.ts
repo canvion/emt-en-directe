@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FavoritoService } from '../../services/FavoritoService';
 import { Favorito } from '../../models/favorito.model';
 
@@ -15,7 +16,8 @@ import { Favorito } from '../../models/favorito.model';
     MatCardModule,
     MatListModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './favoritos-list.html',
   styleUrl: './favoritos-list.css'
