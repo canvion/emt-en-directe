@@ -33,7 +33,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('nombre');
+    localStorage.removeItem('username');
     localStorage.removeItem('email');
   }
 
@@ -46,6 +46,6 @@ export class AuthService {
   }
 
   getCurrentUserName(): string | null {
-    return localStorage.getItem('nombre');
+    return localStorage.getItem('username');
   }
 }

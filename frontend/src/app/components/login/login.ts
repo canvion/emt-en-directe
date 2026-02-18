@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -13,7 +13,7 @@ import { AuthService } from '../../services/AuthService';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
@@ -25,12 +25,23 @@ import { AuthService } from '../../services/AuthService';
 export class LoginComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
 
-  credentials = { username: '', password: '' };
+  //formulario reactivo
+  loginForm: FormGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+
   errorMessage = '';
 
   onSubmit() {
-    this.authService.login(this.credentials.username, this.credentials.password).subscribe({
+    if (this.loginForm.invalid) {
+      return;
+    }
+    const { username, password } = this.loginForm.value;
+
+    this.authService.login(username, password).subscribe({
       next: () => {
         this.router.navigate(['/mapa']);
       },

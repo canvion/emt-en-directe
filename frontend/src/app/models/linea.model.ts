@@ -1,7 +1,17 @@
-export interface Linea{
+export interface Linea {
   id: number;
-  nombre: string;
   numero: string;
+  nombre: string;
   color: string;
-  horarios: string;
+  createdAt?: string;
+  updatedAt?: string;
+  paradas?: ParadaResumen[];
+}
+
+export interface ParadaResumen {
+  id: number;
+  codigo: string;
+  nombre: string;
+  orden: number;
+  esParada: boolean;
 }

@@ -93,10 +93,7 @@ export class MapaComponent implements OnInit {
     }).addTo(this.map);
 
 
-    marker.bindPopup(`
-      <b>Bus ${bus.matricula}</b><br>
-      Línia: ${bus.lineaNumero} - ${bus.lineaNombre}
-    `);
+    marker.bindPopup(`<b>Bus de la Línia ${bus.lineaNumero}</b><br ${bus.lineaNombre} `);
 
     //la posición se guarda para eliminarlo cuando "se mueva"
     this.busMarkers.push(marker);

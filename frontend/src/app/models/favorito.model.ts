@@ -1,11 +1,15 @@
-import { Parada } from "./parada.model";
-
-export interface Favorito{
+export interface Favorito {
   id: number;
-  parada: Parada;
-
+  usuarioId: number;
+  usuarioUsername: string;
+  paradaId: number;
+  paradaNombre: string;
+  paradaCodigo: string;
+  paradaLatitud: number;
+  paradaLongitud: number;
+  createdAt: string;
 }
 
-export interface FavoritoRequest{
+export interface FavoritoRequest {
   paradaId: number;
 }

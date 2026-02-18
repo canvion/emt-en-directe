@@ -7,12 +7,12 @@
     <mat-list-item *ngFor="let favorito of favoritos">
       <mat-card style="width: 100%; margin-bottom: 10px;">
         <mat-card-header>
-          <mat-card-title>{{ favorito.parada.nombre }}</mat-card-title>
-          <mat-card-subtitle>codi: {{ favorito.parada.codigo }}</mat-card-subtitle>
+          <mat-card-title>{{ favorito.paradaNombre }}</mat-card-title>
+          <mat-card-subtitle>codi: {{ favorito.paradaCodigo }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          <p>latitud: {{ favorito.parada.latitud }}</p>
-          <p>longitud: {{ favorito.parada.longitud }}</p>
+          <p>latitud: {{ favorito.paradaLatitud }}</p>
+          <p>longitud: {{ favorito.paradaLongitud }}</p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="warn" (click)="eliminarFavorito(favorito.id)">

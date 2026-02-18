@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -13,7 +13,7 @@ import { AuthService } from '../../services/AuthService';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatInputModule,
     MatButtonModule,
@@ -25,13 +25,25 @@ import { AuthService } from '../../services/AuthService';
 export class RegisterComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
+  private fb = inject(FormBuilder);
 
-  userData = { username: '', email: '', password: '' };
+  //formulario reactivo para registro
+  registerForm: FormGroup = this.fb.group({
+    username: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]]
+  });
+
   errorMessage = '';
   successMessage = '';
 
   onSubmit() {
-    this.authService.register(this.userData.username, this.userData.email, this.userData.password).subscribe({
+    if (this.registerForm.invalid) {
+      return;
+    }
+    const { username, email, password } = this.registerForm.value;
+
+    this.authService.register(username, email, password).subscribe({
       next: () => {
         this.successMessage = 'regitre correcte!! Redirigint al login...';
         setTimeout(() => {

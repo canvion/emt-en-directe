@@ -5,4 +5,16 @@ export interface Parada {
   latitud: number;
   longitud: number;
   esParada: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  lineas?: LineaResumen[];
+}
+
+
+export interface LineaResumen {
+  id: number;
+  numero: string;
+  nombre: string;
+  color: string;
+  orden: number;
 }
