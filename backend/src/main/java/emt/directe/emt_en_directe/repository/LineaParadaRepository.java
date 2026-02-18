@@ -8,8 +8,5 @@ import java.util.List;
 
 @Repository
 public interface LineaParadaRepository extends JpaRepository<LineaParada, Long> {
-    List<LineaParada> findByLineaIdOrderByOrden(Long lineaId);
-    List<LineaParada> findByParadaId(Long paradaId);
 
-    void deleteByLineaIdAndParadaId(Long lineaId, Long paradaId);
 }

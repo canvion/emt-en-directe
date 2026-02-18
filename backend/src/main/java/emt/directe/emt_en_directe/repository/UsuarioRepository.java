@@ -11,7 +11,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     //se genera automáticamente la implementación
     Optional<Usuario> findByUsername(String username);
-    Optional<Usuario> findByEmail(String email);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }

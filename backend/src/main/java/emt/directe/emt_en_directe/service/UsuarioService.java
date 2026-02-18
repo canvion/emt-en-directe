@@ -33,13 +33,6 @@ public class UsuarioService {
         return convertToResponseDTO(usuario);
     }
 
-    //usuari per username
-    public UsuarioResponseDTO getUsuarioByUsername(String username) {
-        Usuario usuario = usuarioRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("usuari no trobat  amb l'username: " + username));
-        return convertToResponseDTO(usuario);
-    }
-
     //rear usuario(registre)
     public UsuarioResponseDTO createUsuario(UsuarioRequestDTO requestDTO) {
 

@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface FavoritoRepository extends JpaRepository<Favorito, Long> {
     List<Favorito> findByUsuarioId(Long usuarioId);
-    Optional<Favorito> findByUsuarioIdAndParadaId(Long usuarioId, Long paradaId);
-
-    boolean existsByUsuarioIdAndParadaId(Long usuarioId, Long paradaId);
 }
