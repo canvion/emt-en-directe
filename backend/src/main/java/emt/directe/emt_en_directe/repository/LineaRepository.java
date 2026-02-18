@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface LineaRepository extends JpaRepository<Linea, Long> {
-
+    Optional<Linea> findByNumero(String numero);
 }

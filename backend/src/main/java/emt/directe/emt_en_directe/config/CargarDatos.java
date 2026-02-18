@@ -52,34 +52,97 @@ public class CargarDatos implements CommandLineRunner {
     //este método se ejecutará al iniciar springBoot
     public void run(String... args) throws Exception {
 
-        if (lineaRepository.count() > 0) {
-            System.out.println("datos cargados.");
-            return;
+        //línea 35
+        if (lineaRepository.findByNumero("35").isEmpty()) {
+            System.out.println("cargando línea 35...");
+
+            Linea linea35 = crearLinea("35", "Aquarium - Can Pastilla", "#FF0000");
+            int orden = 1;
+
+            orden = agregarPunto(linea35, "P001", "Aquarium", 39.531322838820735, 2.729162786755216, true, orden);
+            orden = agregarPunto(linea35, "I001", "punto intermedio", 39.532123570927865, 2.727730889777552, false, orden);
+            orden = agregarPunto(linea35, "I002", "punto intermedio", 39.533699785231450, 2.726223045908703, false, orden);
+            orden = agregarPunto(linea35, "I003", "punto intermedio", 39.534927465953570, 2.724305411002386, false, orden);
+            orden = agregarPunto(linea35, "I004", "punto intermedio", 39.535572898701550, 2.722674616054813, false, orden);
+
+            orden = agregarPunto(linea35, "P002", "Can Pastilla - Racó de Can Ripoll", 39.536451220961474, 2.719956183937689, true, orden);
+            orden = agregarPunto(linea35, "I005", "punto intermedio", 39.537031842081390, 2.719146759716450, false, orden);
+            orden = agregarPunto(linea35, "I006", "punto intermedio", 39.537777941844350, 2.717906054825109, false, orden);
+            orden = agregarPunto(linea35, "I007", "punto intermedio", 39.538029812443720, 2.716305810742012, false, orden);
+
+            orden = agregarPunto(linea35, "P003", "Camí de Can Pastilla", 39.538408810628660, 2.714728130568537, true, orden);
+            orden = agregarPunto(linea35, "I008", "punto intermedio", 39.538842667660750, 2.714186970991560, false, orden);
+            orden = agregarPunto(linea35, "I009", "punto intermedio", 39.539392906906950, 2.713473303431435, false, orden);
+            orden = agregarPunto(linea35, "I010", "punto intermedio", 39.539957682570890, 2.712725140618029, false, orden);
+
+            agregarPunto(linea35, "P004", "es Carnatge", 39.541039247284765, 2.711252773367413, true, orden);
+
+            System.out.println("línea 35 cargada");
+        } else {
+            System.out.println("línea 35 ya existe");
         }
 
-        //línea 35
-        Linea linea35 = crearLinea("35", "Aquarium - Can Pastilla", "#FF0000");
-        int orden = 1;
+        // línea 1
+        if (lineaRepository.findByNumero("1").isEmpty()) {
+            System.out.println("cargando línea 1...");
 
-        orden = agregarPunto(linea35, "P001", "Aquarium",                   39.531322838820735, 2.729162786755216, true,  orden);
-        orden = agregarPunto(linea35, "I001", "punto intermedio",           39.532123570927865, 2.727730889777552, false, orden);
-        orden = agregarPunto(linea35, "I002", "punto intermedio",           39.533699785231450, 2.726223045908703, false, orden);
-        orden = agregarPunto(linea35, "I003", "punto intermedio",           39.534927465953570, 2.724305411002386, false, orden);
-        orden = agregarPunto(linea35, "I004", "punto intermedio",           39.535572898701550, 2.722674616054813, false, orden);
+            Linea linea1 = crearLinea("1", "Aeropuerto", "#0000FF");
+            int orden = 1;
 
-        orden = agregarPunto(linea35, "P002", "Can Pastilla - Racó de Can Ripoll", 39.536451220961474, 2.719956183937689, true, orden);
-        orden = agregarPunto(linea35, "I005", "punto intermedio",           39.537031842081390, 2.719146759716450, false, orden);
-        orden = agregarPunto(linea35, "I006", "punto intermedio",           39.537777941844350, 2.717906054825109, false, orden);
-        orden = agregarPunto(linea35, "I007", "punto intermedio",           39.538029812443720, 2.716305810742012, false, orden);
 
-        orden = agregarPunto(linea35, "P003", "Camí de Can Pastilla",       39.538408810628660, 2.714728130568537, true,  orden);
-        orden = agregarPunto(linea35, "I008", "punto intermedio",           39.538842667660750, 2.714186970991560, false, orden);
-        orden = agregarPunto(linea35, "I009", "punto intermedio",           39.539392906906950, 2.713473303431435, false, orden);
-        orden = agregarPunto(linea35, "I010", "punto intermedio",           39.539957682570890, 2.712725140618029, false, orden);
 
-        agregarPunto(linea35,         "P004", "es Carnatge",                   39.541039247284765, 2.711252773367413, true,  orden);
+            System.out.println("línea 1 cargada");
+        } else {
+            System.out.println("⏭línea 1 ya existe");
+        }
 
-        System.out.println(" datos de la línea 35 cargados");
+        //línea 33
+        if (lineaRepository.findByNumero("33").isEmpty()) {
+            System.out.println("cargando la línea 33...");
+
+            Linea linea33 = crearLinea("33", "Son Espases", "#00FF00");
+            int orden = 1;
+
+
+
+
+            System.out.println("línea 33 cargada");
+        } else {
+            System.out.println("la línea 33 ya existe");
+        }
+
+        //línea 30
+        if (lineaRepository.findByNumero("30").isEmpty()) {
+            System.out.println("cargando la línea 30...");
+
+            Linea linea30 = crearLinea("30", "Marivent-Palau de Congressos", "#FFFF00");
+            int orden = 1;
+
+
+
+
+
+            System.out.println("la línea 30 ya está cargada");
+        } else {
+            System.out.println("la línea 30 ya existe");
+        }
+
+        // línea 23
+        if (lineaRepository.findByNumero("23").isEmpty()) {
+            System.out.println("cargando la línea 23...");
+
+            Linea linea23 = crearLinea("23", "S'Arenal - Pl. Espanya", "#FF00FF");
+            int orden = 1;
+
+
+
+
+            System.out.println("línea 23 cargada");
+        } else {
+            System.out.println("la línea 23 ya existe");
+        }
+
+        System.out.println("la carga de datos y la comprobación completadas");
     }
 
 }
