@@ -40,6 +40,10 @@ public class FavoritoService {
         boolean yaExiste = favoritoRepository.findByUsuarioId(usuarioId).stream()
                 .anyMatch(f -> f.getParada().getId().equals(requestDTO.getParadaId()));
 
+        if (yaExiste) {
+            throw new RuntimeException("aquesta parada ja és als teus favorits");
+        }
+
         Favorito favorito = new Favorito();
         favorito.setUsuario(usuario);
         favorito.setParada(parada);

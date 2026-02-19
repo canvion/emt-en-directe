@@ -23,6 +23,4 @@ public class UsuarioRequestDTO {
     @Size(min = 6, message = "la contraseña debe tener mínimo 6 caracteres")
     private String password;
 
-    @Size(max = 20, message = "el rol no puede superar los 20 caracteres")
-    private String rol = "USER";
 }

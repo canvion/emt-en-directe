@@ -51,7 +51,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/**", "/api/usuarios/register", "/api/lineas/**", "/api/paradas/**", "/api/buses/**", "/error").permitAll()
-                        .requestMatchers("/api/favoritos/**", "/api/usuarios/perfil").authenticated()
+                        .requestMatchers("/api/favoritos/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

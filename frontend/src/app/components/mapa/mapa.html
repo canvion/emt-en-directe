@@ -1,1 +1,62 @@
-<div id="map" style="height: calc(100vh - 64px); width: 100%;"></div>
+<div id="map"></div>
+
+<div class="titulo-flotante">
+  <span>EMT en Directe</span>
+</div>
+
+<button class="logout-btn" (click)="logout()" title="Tancar sessió">
+  <span class="logout-icon">⏻</span>
+  <span class="logout-label">Sortir</span>
+</button>
+
+<div class="panel-overlay" [class.visible]="mostrarLineas">
+  <div class="panel-handle" (click)="tancarTot()"><div class="handle-bar"></div></div>
+  <div class="panel-header"><h2>Línies d'Autobús</h2></div>
+  <div class="panel-body">
+    <div *ngFor="let linea of lineas" class="linea-item" (click)="tancarTot()">
+      <div class="linea-numero" [style.background-color]="linea.color">{{ linea.numero }}</div>
+      <div class="linea-info"><span class="linea-nombre">{{ linea.nombre }}</span></div>
+      <span class="linea-arrow">›</span>
+    </div>
+    <div *ngIf="lineas.length === 0" class="panel-empty">
+      <span>🚌</span><p>No hi ha línies disponibles</p>
+    </div>
+  </div>
+</div>
+
+<div class="panel-overlay" [class.visible]="mostrarFavoritos">
+  <div class="panel-handle" (click)="tancarTot()"><div class="handle-bar"></div></div>
+  <div class="panel-header"><h2>Parades Favorites</h2></div>
+  <div class="panel-body">
+    <div *ngFor="let fav of favoritos" class="favorito-item">
+      <div class="fav-icon">📍</div>
+      <div class="fav-info">
+        <span class="fav-nombre">{{ fav.paradaNombre }}</span>
+        <div class="fav-lineas" *ngIf="fav.lineas && fav.lineas.length > 0">
+          <span *ngFor="let linea of fav.lineas" class="fav-linea-tag">{{ linea }}</span>
+        </div>
+        <span class="fav-codigo">Codi: {{ fav.paradaCodigo }}</span>
+      </div>
+      <button class="fav-delete-btn" (click)="eliminarFavorito(fav.id)">🗑</button>
+    </div>
+    <div *ngIf="favoritos.length === 0" class="panel-empty">
+      <span>⭐</span><p>No tens cap parada favorita</p>
+    </div>
+  </div>
+</div>
+
+<div class="backdrop" [class.visible]="mostrarLineas || mostrarFavoritos" (click)="tancarTot()"></div>
+
+<div class="barra-inferior">
+  <button class="barra-btn" (click)="toggleLineas()">
+    <span class="barra-icon">🚌</span>
+    <span class="barra-label">Línies</span>
+  </button>
+  <div class="barra-usuario">
+    <span class="usuario-nombre">{{ username }}</span>
+  </div>
+  <button class="barra-btn" (click)="toggleFavoritos()">
+    <span class="barra-icon">⭐</span>
+    <span class="barra-label">Favorits</span>
+  </button>
+</div>

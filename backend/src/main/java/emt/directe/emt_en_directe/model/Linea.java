@@ -26,7 +26,7 @@ public class Linea {
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(length = 7, nullable = true)
+    @Column(length = 7)
     private String color;
 
     @OneToMany(mappedBy = "linea", cascade = CascadeType.ALL, orphanRemoval = true)

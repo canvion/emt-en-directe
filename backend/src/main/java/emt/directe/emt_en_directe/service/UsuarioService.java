@@ -47,8 +47,8 @@ public class UsuarioService {
         Usuario usuario = new Usuario();
         usuario.setUsername(requestDTO.getUsername());
         usuario.setEmail(requestDTO.getEmail());
-        usuario.setPassword(passwordEncoder.encode(requestDTO.getPassword())); // Encriptar
-        usuario.setRol(requestDTO.getRol() != null ? requestDTO.getRol() : "USER");
+        usuario.setPassword(passwordEncoder.encode(requestDTO.getPassword()));
+        usuario.setRol("USER");
 
         Usuario savedUsuario = usuarioRepository.save(usuario);
         return convertToResponseDTO(savedUsuario);
