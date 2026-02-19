@@ -43,4 +43,7 @@ public class Bus {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    @Column(nullable = false)
+    private Boolean direccionAscendente = true;
 }

@@ -48,8 +48,24 @@ public class BusService {
             return convertirADTO(bus);
         }
 
-        //cuando el resto sea 0 vuelve a empezar
-        int siguientePunto = (bus.getIndicePunto() + 1) % puntos.size();
+        int puntoActual = bus.getIndicePunto();
+
+        //cuando el punto supere size, se invertirá la lista/dirección
+        int siguientePunto;
+
+        if (bus.getDireccionAscendente()) {
+            siguientePunto = puntoActual + 1;
+            if (siguientePunto >= puntos.size()) {
+                siguientePunto = puntoActual - 1;
+                bus.setDireccionAscendente(false);
+            }
+        } else {
+            siguientePunto = puntoActual - 1;
+            if (siguientePunto < 0) {
+                siguientePunto = 1;
+                bus.setDireccionAscendente(true);
+            }
+        }
 
         bus.setIndicePunto(siguientePunto);
         bus.setLatitud(puntos.get(siguientePunto).getParada().getLatitud());
