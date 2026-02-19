@@ -26,7 +26,7 @@
 
 <div class="panel-overlay" [class.visible]="mostrarFavoritos">
   <div class="panel-handle" (click)="tancarTot()"><div class="handle-bar"></div></div>
-  <div class="panel-header"><h2>Parades Favorites</h2></div>
+  <div class="panel-header"><h2>parades Favorites</h2></div>
   <div class="panel-body">
     <div *ngFor="let fav of favoritos" class="favorito-item">
       <div class="fav-icon">📍</div>
@@ -50,13 +50,13 @@
 <div class="barra-inferior">
   <button class="barra-btn" (click)="toggleLineas()">
     <span class="barra-icon">🚌</span>
-    <span class="barra-label">Línies</span>
+    <span class="barra-label">línies</span>
   </button>
   <div class="barra-usuario">
     <span class="usuario-nombre">{{ username }}</span>
   </div>
   <button class="barra-btn" (click)="toggleFavoritos()">
     <span class="barra-icon">⭐</span>
-    <span class="barra-label">Favorits</span>
+    <span class="barra-label">favorits</span>
   </button>
 </div>

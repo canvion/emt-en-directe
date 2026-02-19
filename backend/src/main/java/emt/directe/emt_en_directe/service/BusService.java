@@ -42,6 +42,12 @@ public class BusService {
     // Mover el bus al siguiente punto del recorrido
     private BusResponseDTO moverBusAlSiguientePunto(Bus bus, List<LineaParada> puntos) {
 
+        //simulamos un posible "atasco del bus" con una probabilidad del 15% de que no se mueva el marcadorr.
+        double probabilidad = Math.random();
+        if (probabilidad < 0.15) {
+            return convertirADTO(bus);
+        }
+
         //cuando el resto sea 0 vuelve a empezar
         int siguientePunto = (bus.getIndicePunto() + 1) % puntos.size();
 
