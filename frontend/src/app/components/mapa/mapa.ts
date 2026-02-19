@@ -109,7 +109,7 @@ export class MapaComponent implements OnInit {
       <button onclick="window.toggleFavorit(${parada.id})" class="favorito-btn"> ${corazon} ${texto} </button> </div> `;
   }
 
-  //recargamos rapidamente para que cambie el corazon.
+  //recargamos para que cambie el corazon.
   recargarParadas() {
     this.map.eachLayer((layer: any) => {
       if (layer instanceof L.Marker && layer.options.icon?.options?.className === 'parada-icon') {

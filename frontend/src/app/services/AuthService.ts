@@ -41,11 +41,4 @@ export class AuthService {
     return localStorage.getItem('token') !== null;
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
-
-  getCurrentUserName(): string | null {
-    return localStorage.getItem('username');
-  }
 }

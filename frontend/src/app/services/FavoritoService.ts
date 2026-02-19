@@ -25,9 +25,4 @@ export class FavoritoService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  getFavoritoByParada(paradaId: number): Observable<Favorito | null> {
-    return this.http.get<Favorito>(`${this.baseUrl}/parada/${paradaId}`).pipe(
-      catchError(() => of(null))
-    );
-  }
 }

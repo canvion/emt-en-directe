@@ -16,8 +16,4 @@ export class LineaService {
   getAllLineas(): Observable<Linea[]> {
     return this.http.get<Linea[]>(this.baseUrl);
   }
-
-  getLineaById(id: number): Observable<Linea> {
-    return this.http.get<Linea>(`${this.baseUrl}/${id}`);
-  }
 }

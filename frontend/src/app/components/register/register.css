@@ -1,0 +1,56 @@
+/* Centra la card en la pantalla */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Tamaño de la card */
+mat-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+}
+
+/* Título centrado */
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+mat-card-title {
+  font-size: 24px;
+}
+
+/* Campos del formulario ocupan todo el ancho */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* Botón de submit ocupa todo el ancho */
+button[type="submit"] {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Mensaje de error */
+.error-message {
+  color: #f44336;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Mensaje de éxito (solo register) */
+.success-message {
+  color: #4caf50;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Botón de ir a login/register centrado */
+mat-card-actions {
+  justify-content: center;
+}

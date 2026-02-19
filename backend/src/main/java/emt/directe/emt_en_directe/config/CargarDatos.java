@@ -75,7 +75,35 @@ public class CargarDatos implements CommandLineRunner {
             orden = agregarPunto(linea35, "I009", "punto intermedio", 39.539392906906950, 2.713473303431435, false, orden);
             orden = agregarPunto(linea35, "I010", "punto intermedio", 39.539957682570890, 2.712725140618029, false, orden);
 
-            agregarPunto(linea35, "P004", "es Carnatge", 39.541039247284765, 2.711252773367413, true, orden);
+            orden = agregarPunto(linea35, "P004", "es Carnatge", 39.541039247284765, 2.711252773367413, true, orden);
+            orden = agregarPunto(linea35, "I011", "punto intermedio", 39.542497423942706, 2.708350260196381, false, orden);
+            orden = agregarPunto(linea35, "I012", "punto intermedio", 39.5440787340535, 2.706380833335406, false, orden);
+            orden = agregarPunto(linea35, "I013", "punto intermedio", 39.54584233158914, 2.7046635070684504, false, orden);
+            orden = agregarPunto(linea35, "I014", "punto intermedio", 39.54738052391733, 2.70323162013883, false, orden);
+            orden = agregarPunto(linea35, "I015", "punto intermedio", 39.548481464337534, 2.7020295909301213, false, orden);
+
+            orden = agregarPunto(linea35, "P005", "Sant Joan de Déu", 39.54922583283524, 2.7009476050913768, true, orden);
+            orden = agregarPunto(linea35, "I016", "punto intermedio", 39.54981362132342, 2.7000759955064506, false, orden);
+            orden = agregarPunto(linea35, "I017", "punto intermedio", 39.55085837283258, 2.698318557202304, false, orden);
+            orden = agregarPunto(linea35, "I018", "punto intermedio", 39.55132290586955, 2.6972379379636178, false, orden);
+
+            orden = agregarPunto(linea35, "P006", "es Coll d'en Rabassa", 39.551499494270466, 2.69657512133315, true, orden);
+            orden = agregarPunto(linea35, "I019", "punto intermedio", 39.552135251970846, 2.695247796751527, false, orden);
+
+            orden = agregarPunto(linea35, "P007", "Cardenal Rossell - Torre d'en Pau", 39.55316290778004, 2.6942161683127543, true, orden);
+            orden = agregarPunto(linea35, "I020", "punto intermedio", 39.55372948458747, 2.6935860937455, false, orden);
+            orden = agregarPunto(linea35, "I021", "punto intermedio", 39.55449236451794, 2.6929137823714853, false, orden);
+
+            orden = agregarPunto(linea35, "P008", "Ciutat Jardí", 39.55548936629159, 2.692025051179431, true, orden);
+            orden = agregarPunto(linea35, "I022", "punto intermedio", 39.555859538222414, 2.691495314899236, false, orden);
+            orden = agregarPunto(linea35, "I023", "punto intermedio", 39.556331253343444, 2.690793074723885, false, orden);
+            orden = agregarPunto(linea35, "I024", "punto intermedio", 39.55662179705512, 2.689787403438453, false, orden);
+            orden = agregarPunto(linea35, "I025", "punto intermedio", 39.55684166059112, 2.688779055353653, false, orden);
+            orden = agregarPunto(linea35, "I026", "punto intermedio", 39.55716429998429, 2.687904699661632, false, orden);
+            orden = agregarPunto(linea35, "I027", "punto intermedio", 39.55705794278646, 2.6869454068875753, false, orden);
+
+            agregarPunto(linea35, "P009", "la Gruta", 39.5571716804016, 2.6863633675099265, true, orden);
+
 
             System.out.println("línea 35 cargada");
         } else {
@@ -129,7 +157,7 @@ public class CargarDatos implements CommandLineRunner {
             orden = agregarPunto(linea1, "I126", "punto intermedio", 39.55716429998429, 2.687904699661632, false, orden);
             orden = agregarPunto(linea1, "I127", "punto intermedio", 39.55705794278646, 2.6869454068875753, false, orden);
 
-            agregarPunto(linea1, "P007", "la Gruta", 39.5571716804016, 2.6863633675099265, true, orden);
+            agregarPunto(linea1, "P107", "la Gruta", 39.5571716804016, 2.6863633675099265, true, orden);
 
             System.out.println("línea 1 cargada");
         } else {
@@ -184,20 +212,39 @@ public class CargarDatos implements CommandLineRunner {
             orden = agregarPunto(linea33, "I325", "punto intermedio", 39.5892700713994, 2.645682010827466, false, orden);
             orden = agregarPunto(linea33, "I326", "punto intermedio", 39.58862436459531, 2.645687204064083, false, orden);
 
-            agregarPunto(linea33, "P307", "General Riera - Velodrom", 39.58803644020065, 2.6456898604027805, true, orden);
+            orden = agregarPunto(linea33, "P307", "General Riera - Velodrom", 39.58803644020065, 2.6456898604027805, true, orden);
+            orden = agregarPunto(linea33, "I327", "punto intermedio", 39.58717563192411, 2.645794436239876, false, orden);
+            orden = agregarPunto(linea33, "I328", "punto intermedio", 39.586406613201625, 2.645936989116548, false, orden);
 
+            orden = agregarPunto(linea33, "P308", "General Riera - Escola Costa i Llobera", 39.58563232076345, 2.645998482877417, true, orden);
+            orden = agregarPunto(linea33, "I329", "punto intermedio", 39.58499574812983, 2.6460669944944533, false, orden);
+            orden = agregarPunto(linea33, "I330", "punto intermedio", 39.584376234709595, 2.6462053313452927, false, orden);
 
+            orden = agregarPunto(linea33, "P309", "General Riera - s'Escorxador", 39.583772877870125, 2.6463531528048962, true, orden);
+            orden = agregarPunto(linea33, "I331", "punto intermedio", 39.58300208198162, 2.6466132325676224, false, orden);
+            orden = agregarPunto(linea33, "I332", "punto intermedio", 39.58228166442354, 2.6467717928259673, false, orden);
+            orden = agregarPunto(linea33, "I333", "punto intermedio", 39.581159623057644, 2.647192444909112, false, orden);
+
+            orden = agregarPunto(linea33, "P310", "General Riera - Ticia", 39.58040203468422, 2.647408662341017, true, orden);
+            orden = agregarPunto(linea33, "I334", "punto intermedio", 39.579621404749794, 2.647982028840195, false, orden);
+            orden = agregarPunto(linea33, "I335", "punto intermedio", 39.57863409807233, 2.648779014068143, false, orden);
+
+            orden = agregarPunto(linea33, "P311", "Àrea d'intercanvi Alemanya - Comte de Sallent", 39.57817978394353, 2.6497840859963544, true, orden);
+            orden = agregarPunto(linea33, "I336", "punto intermedio", 39.577787228849395, 2.651087287302725, false, orden);
+            orden = agregarPunto(linea33, "I337", "punto intermedio", 39.577351712393884, 2.652349786135661, false, orden);
+
+            agregarPunto(linea33, "P312", "pl. d'Espanya - Estació Intermodal", 39.576801738261935, 2.6529995307576812, true, orden);
 
             System.out.println("línea 33 cargada");
         } else {
             System.out.println("la línea 33 ya existe");
         }
 
-        //línea 30
+        //línea 5
         if (lineaRepository.findByNumero("5").isEmpty()) {
             System.out.println("cargando la línea 5...");
 
-            Linea linea5 = crearLinea("5", "Es Rafal Nou - Pl. Progrés", "#FFFF00");
+            Linea linea5 = crearLinea("5", "Es Rafal Nou - Pl. Espanya", "#FFFF00");
             int orden = 1;
 
 
@@ -243,8 +290,52 @@ public class CargarDatos implements CommandLineRunner {
             orden = agregarPunto(linea5, "I525", "punto intermedio", 39.58334440449983, 2.673537679654213, false, orden);
 
 
-            agregarPunto(linea5, "P508", "es Rafal Vell", 39.58292641095817, 2.6734196159479064, true, orden);
+            orden = agregarPunto(linea5, "P508", "es Rafal Vell", 39.58292641095817, 2.6734196159479064, true, orden);
+            orden = agregarPunto(linea5, "I526", "punto intermedio", 39.582589218773904, 2.673846294030208, false, orden);
+            orden = agregarPunto(linea5, "I527", "punto intermedio", 39.58206412819564, 2.6744551612570895, false, orden);
+            orden = agregarPunto(linea5, "I528", "punto intermedio", 39.58158453319799, 2.675021107365548, false, orden);
+            orden = agregarPunto(linea5, "I529", "punto intermedio", 39.580925049681305, 2.6757533428532616, false, orden);
+            orden = agregarPunto(linea5, "I530", "punto intermedio", 39.58029332570887, 2.67638672032319, false, orden);
 
+            orden = agregarPunto(linea5, "P509", "Poliesportiu Germans Escalas", 39.57992433979503, 2.6758367723714533, true, orden);
+            orden = agregarPunto(linea5, "I531", "punto intermedio", 39.579450095972085, 2.674854674636475, false, orden);
+            orden = agregarPunto(linea5, "I532", "punto intermedio", 39.57873827363452, 2.67328717776174, false, orden);
+            orden = agregarPunto(linea5, "I533", "punto intermedio", 39.57826532724339, 2.672153345241735, false, orden);
+
+            orden = agregarPunto(linea5, "P510", "Son Gotleu", 39.577925610246865, 2.671448241628646, true, orden);
+            orden = agregarPunto(linea5, "I534", "punto intermedio", 39.57743372504513, 2.6703226565582368, false, orden);
+            orden = agregarPunto(linea5, "I535", "punto intermedio", 39.57692418243588, 2.668830009558655, false, orden);
+            orden = agregarPunto(linea5, "I536", "punto intermedio", 39.57666693412212, 2.6683517823672065, false, orden);
+
+            orden = agregarPunto(linea5, "P511", "pl. de Miquel Dolç", 39.57633993399648, 2.6678812577545563, true, orden);
+            orden = agregarPunto(linea5, "I537", "punto intermedio", 39.57595201061135, 2.6669968468946297, false, orden);
+            orden = agregarPunto(linea5, "I538", "punto intermedio", 39.575430207567585, 2.665893703128883, false, orden);
+
+            orden = agregarPunto(linea5, "P512", "pl. de Pere Garau - ses Cent Cases", 39.57510354659624, 2.665024664067574, true, orden);
+            orden = agregarPunto(linea5, "I539", "punto intermedio", 39.57510069890454, 2.6643584537974108, false, orden);
+            orden = agregarPunto(linea5, "I540", "punto intermedio", 39.5749094792155, 2.6637456580397014, false, orden);
+
+            orden = agregarPunto(linea5, "P513", "Mercat de Pere Garau", 39.574517403321664, 2.663666639001624, true, orden);
+            orden = agregarPunto(linea5, "I541", "punto intermedio", 39.574154894095315, 2.6629551685585713, false, orden);
+            orden = agregarPunto(linea5, "I542", "punto intermedio", 39.57368666826787, 2.66190015126185, false, orden);
+            orden = agregarPunto(linea5, "I543", "punto intermedio", 39.573537810803025, 2.660762894677237, false, orden);
+
+            orden = agregarPunto(linea5, "P514", "pl. de les Columnes - Uetam", 39.573785373468525, 2.6603039696084223, true, orden);
+            orden = agregarPunto(linea5, "I544", "punto intermedio", 39.57422337350604, 2.6598408581712234, false, orden);
+            orden = agregarPunto(linea5, "I545", "punto intermedio", 39.5747355730044, 2.6593938913991906, false, orden);
+            orden = agregarPunto(linea5, "I546", "punto intermedio", 39.57501205157219, 2.6588002085292324, false, orden);
+
+            orden = agregarPunto(linea5, "P515", "Aragó - Miquel Marquès", 39.57466579351468, 2.658471903692187, true, orden);
+            orden = agregarPunto(linea5, "I547", "punto intermedio", 39.573999508527024, 2.6579519706220616, false, orden);
+            orden = agregarPunto(linea5, "I548", "punto intermedio", 39.57342187133608, 2.6574193834296786, false, orden);
+
+            orden = agregarPunto(linea5, "P516", "Grans Magatzems - Àrea d'intercanvi Sindicat", 39.573132451765325, 2.6571484966998904, true, orden);
+            orden = agregarPunto(linea5, "I549", "punto intermedio", 39.57308696720718, 2.656491355477423, false, orden);
+            orden = agregarPunto(linea5, "I550", "punto intermedio", 39.574063106934055, 2.655764726627603, false, orden);
+            orden = agregarPunto(linea5, "I551", "punto intermedio", 39.57491997649959, 2.6556025470939035, false, orden);
+            orden = agregarPunto(linea5, "I552", "punto intermedio", 39.57538516745379, 2.6546959131283807, false, orden);
+
+            agregarPunto(linea5, "P517", "pl. d'Espanya - Estació Intermodal", 39.575940487756945, 2.6541284522794517, true, orden);
 
             System.out.println("la línea 5 ya está cargada");
         } else {
@@ -255,7 +346,7 @@ public class CargarDatos implements CommandLineRunner {
         if (lineaRepository.findByNumero("23").isEmpty()) {
             System.out.println("cargando la línea 23...");
 
-            Linea linea23 = crearLinea("23", "Pl. Espanya", "#FF00FF");
+            Linea linea23 = crearLinea("23", "Pl. Espanya - Palau de Congressos", "#FF00FF");
             int orden = 1;
 
 
