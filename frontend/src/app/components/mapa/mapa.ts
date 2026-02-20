@@ -46,7 +46,9 @@ export class MapaComponent implements OnInit {
     this.initMap();
     this.cargarParadas();
     this.iniciarPolling();
-    this.cargarFavoritos();
+    if (this.estaLogueado) {
+      this.cargarFavoritos();
+    }
     this.cargarLineas();
   }
 
@@ -102,9 +104,18 @@ export class MapaComponent implements OnInit {
     const corazon = esFavorito ? '❤️' : '🤍';
     const texto = esFavorito ? 'eliminar de favorits' : 'afegir a favorits';
 
-    return ` <div class="popup-content">
-      <b>${parada.nombre}</b><br>codi: ${parada.codigo}<br>
-      <button onclick="window.toggleFavorit(${parada.id})" class="favorito-btn"> ${corazon} ${texto} </button> </div> `;
+    const botonFavorito = this.estaLogueado ? `
+      <button onclick="window.toggleFavorit(${parada.id})" class="favorito-btn">
+        ${corazon} ${texto}
+      </button>` : '';
+
+    return `
+      <div class="popup-content">
+        <b>${parada.nombre}</b><br>
+        Codi: ${parada.codigo}<br>
+        ${botonFavorito}
+      </div>
+    `;
   }
 
   //recargamos para que cambie el corazon.
@@ -277,6 +288,17 @@ export class MapaComponent implements OnInit {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/mapa']);
+  }
+
+
+  get estaLogueado(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  goToLogin() {
     this.router.navigate(['/login']);
   }
+
+
 }

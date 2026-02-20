@@ -24,7 +24,7 @@ import { AuthService } from '../../services/AuthService';
 })
 export class LoginComponent {
   private authService = inject(AuthService);
-  private router = inject(Router);
+   router = inject(Router);
   private fb = inject(FormBuilder);
 
   //formulario reactivo

@@ -19,9 +19,9 @@
   <span>EMT en Directe</span>
 </div>
 
-<button class="logout-btn" (click)="logout()" title="Tancar sessió">
-  <span class="logout-icon">⏻</span>
-  <span class="logout-label">Sortir</span>
+<button class="logout-btn" (click)="estaLogueado ? logout() : goToLogin()">
+  <span class="logout-icon">{{ estaLogueado ? '🚪 ' : '👤 ' }}</span>
+  <span class="logout-label">{{ estaLogueado ? 'sortir' : 'inicia sessió' }}</span>
 </button>
 
 <div class="panel-overlay" [class.visible]="mostrarLineas && !lineaDetalle">
@@ -76,11 +76,21 @@
     <span class="barra-icon">🚌</span>
     <span class="barra-label">línies</span>
   </button>
-  <div class="barra-usuario">
+
+  <div class="barra-usuario" *ngIf="estaLogueado">
     <span class="usuario-nombre">{{ username }}</span>
   </div>
-  <button class="barra-btn" (click)="toggleFavoritos()">
+
+  <button class="barra-btn" *ngIf="estaLogueado" (click)="toggleFavoritos()">
     <span class="barra-icon">⭐</span>
     <span class="barra-label">favorits</span>
   </button>
 </div>
+
+<div class="barra-usuario">
+  <span class="usuario-nombre">{{ username }}</span>
+</div>
+<button class="barra-btn" (click)="toggleFavoritos()">
+  <span class="barra-icon">⭐</span>
+  <span class="barra-label">favorits</span>
+</button>

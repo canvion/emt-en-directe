@@ -54,3 +54,15 @@ button[type="submit"] {
 mat-card-actions {
   justify-content: center;
 }
+
+/*boton para salir de login al mapa principal*/
+
+.btn-volver {
+  position: fixed; top: 20px; right: 20px;
+  background: white; border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 22px; padding: 10px 18px;
+  font-size: 14px; font-weight: 600; color: #0099cc;
+  cursor: pointer; box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+}
+.btn-volver:hover { transform: scale(1.04); }
