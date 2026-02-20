@@ -3,12 +3,15 @@ package emt.directe.emt_en_directe.config;
 import emt.directe.emt_en_directe.model.Linea;
 import emt.directe.emt_en_directe.model.LineaParada;
 import emt.directe.emt_en_directe.model.Parada;
+import emt.directe.emt_en_directe.model.Usuario;
 import emt.directe.emt_en_directe.repository.LineaParadaRepository;
 import emt.directe.emt_en_directe.repository.LineaRepository;
 import emt.directe.emt_en_directe.repository.ParadaRepository;
+import emt.directe.emt_en_directe.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Component
 @RequiredArgsConstructor
@@ -17,6 +20,8 @@ public class CargarDatos implements CommandLineRunner {
     private final LineaRepository lineaRepository;
     private final ParadaRepository paradaRepository;
     private final LineaParadaRepository lineaParadaRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
     //creamos la línea
     private Linea crearLinea(String numero, String nombre, String color) {
@@ -51,6 +56,16 @@ public class CargarDatos implements CommandLineRunner {
 
     //este método se ejecutará al iniciar springBoot
     public void run(String... args) throws Exception {
+
+        //usuario de prueba
+        if (usuarioRepository.findByUsername("usuari").isEmpty()) {
+            Usuario usuario = new Usuario();
+            usuario.setUsername("usuari");
+            usuario.setEmail("usuari@gmail.com");
+            usuario.setPassword(passwordEncoder.encode("password"));
+            usuarioRepository.save(usuario);
+            System.out.println("usuario de prueba creado");
+        }
 
         //línea 35
         if (lineaRepository.findByNumero("35").isEmpty()) {

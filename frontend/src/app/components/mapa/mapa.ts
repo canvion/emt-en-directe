@@ -243,8 +243,8 @@ export class MapaComponent implements OnInit {
 
             this.lineaPolyline = L.polyline(coordenadas, {
               color: linea.color,
-              weight: 4,
-              opacity: 0.8
+              weight: 7,
+              opacity: 0.9
             }).addTo(this.map);
 
             // filtramos para el panel
@@ -289,6 +289,7 @@ export class MapaComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/mapa']);
+    this.recargarParadas()
   }
 
 
