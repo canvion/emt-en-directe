@@ -124,3 +124,86 @@
 .fav-codigo { font-family: var(--font); font-size: 13px; color: rgba(60,60,67,0.6); }
 .fav-delete-btn { background: none; border: none; font-size: 20px; cursor: pointer; padding: 6px; border-radius: 8px; transition: background 0.15s; opacity: 0.6; }
 .fav-delete-btn:hover { background: rgba(255,59,48,0.1); opacity: 1; }
+
+/*estilos para el despliegue de las paradas al seleccionar una línea*/
+.linea-detall {
+  background-color: rgba(0,0,0,0.15);
+  padding: 8px 12px;
+}
+
+.parada-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.parada-codi {
+  opacity: 0.6;
+  font-size: 12px;
+}
+
+
+
+.panel-lateral {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background: rgba(30,30,30,0.92);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.panel-lateral.visible {
+  left: 0;
+}
+
+.panel-lateral-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.panel-lateral-header button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.panel-lateral-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px;
+}
+
+.panel-lateral {
+  pointer-events: none; /* el contenedor no bloquea */
+}
+
+.panel-lateral.visible {
+  left: 0;
+  pointer-events: all; /* solo cuando está visible recibe clicks */
+}
+
+.panel-lateral-header,
+.panel-lateral-body {
+  pointer-events: all; /* los elementos internos siempre reciben clicks */
+}
+
+.panel-overlay {
+  pointer-events: none;
+}
+
+.panel-overlay.visible {
+  pointer-events: all;
+}

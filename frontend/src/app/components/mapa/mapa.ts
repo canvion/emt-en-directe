@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { ParadaService } from '../../services/ParadaService';
 import { BusService } from '../../services/BusService';
@@ -10,9 +10,8 @@ import { LineaService } from '../../services/LineaService';
 import { AuthService } from '../../services/AuthService';
 import { Bus } from '../../models/bus.model';
 import { Parada } from '../../models/parada.model';
-import { Favorito } from '../../models/favorito.model';
 import { Linea } from '../../models/linea.model';
-import { API_CONFIG } from '../../config/api.config';
+
 
 @Component({
   selector: 'app-mapa',
@@ -32,7 +31,6 @@ export class MapaComponent implements OnInit {
   private busMarkers: L.Marker[] = [];
   private authService = inject(AuthService);
   private router = inject(Router);
-  private http = inject(HttpClient);
   private favoritosMap: Map<number, number> = new Map();
 
   //cargamos las paradas, los buses, los favoritos y las lineas y el username
@@ -207,6 +205,57 @@ export class MapaComponent implements OnInit {
     });
   }
 
+
+  lineaExpandida: number | null = null;
+  lineaDetalle: Linea | null = null;
+
+  private lineaPolyline: L.Polyline | null = null;
+
+  //ver paradas al clickar en una línea.
+  verDetalleLinea(lineaId: number) {
+    if (this.lineaExpandida === lineaId) {
+      this.lineaExpandida = null;
+      this.lineaDetalle = null;
+    } else {
+      this.lineaExpandida = lineaId;
+      this.lineaService.getLineaById(lineaId).subscribe({
+          next: (linea) => {
+            // quita la línea anterior si había
+            if (this.lineaPolyline) {
+              this.lineaPolyline.remove();
+              this.lineaPolyline = null;
+            }
+
+            // dibuja la línea con TODOS los puntos (incluidos intermedios)
+            const coordenadas = linea.paradas
+              ?.map(p => [p.latitud, p.longitud] as [number, number]) ?? [];
+
+            this.lineaPolyline = L.polyline(coordenadas, {
+              color: linea.color,
+              weight: 4,
+              opacity: 0.8
+            }).addTo(this.map);
+
+            // filtramos para el panel
+            linea.paradas = linea.paradas?.filter(p => p.esParada === true);
+            this.lineaDetalle = linea;
+          },
+        error: (err) => console.error('error carregant detall línia', err)
+      });
+    }
+  }
+
+  limpiarLinea() {
+    if (this.lineaPolyline) {
+      this.lineaPolyline.remove();
+      this.lineaPolyline = null;
+    }
+    this.lineaDetalle = null;
+    this.lineaExpandida = null;
+    this.mostrarLineas = false;
+  }
+
+
   //funciones que hacen que se abra un menu u otro.
   toggleLineas() {
     this.mostrarLineas = !this.mostrarLineas;
@@ -218,18 +267,13 @@ export class MapaComponent implements OnInit {
     this.mostrarLineas = false;
   }
 
-  tancarLineas() {
-    this.mostrarLineas = false;
-  }
-
-  tancarFavoritos() {
-    this.mostrarFavoritos = false;
-  }
-
   tancarTot() {
-    this.mostrarLineas = false;
-    this.mostrarFavoritos = false;
-  }
+      this.mostrarLineas = false;
+      this.mostrarFavoritos = false;
+      this.lineaExpandida = null;
+      this.lineaDetalle = null;
+    }
+
 
   logout() {
     this.authService.logout();

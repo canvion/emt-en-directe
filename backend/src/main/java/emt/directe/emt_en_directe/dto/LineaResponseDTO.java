@@ -32,6 +32,7 @@ public class LineaResponseDTO {
         private String nombre;
         private Integer orden;
         private Boolean esParada;
+        private Double latitud;
+        private Double longitud;
     }
-
 }

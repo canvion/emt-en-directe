@@ -35,7 +35,9 @@ public class LineaService {
                         lp.getParada().getCodigo(),
                         lp.getParada().getNombre(),
                         lp.getOrden(),
-                        lp.getEsParada()
+                        lp.getEsParada(),
+                        lp.getParada().getLatitud(),
+                        lp.getParada().getLongitud()
                 ))
                 .collect(Collectors.toList());
 

@@ -14,4 +14,6 @@ export interface ParadaResumen {
   nombre: string;
   orden: number;
   esParada: boolean;
+  latitud: number;
+  longitud: number;
 }

@@ -1,5 +1,20 @@
 <div id="map"></div>
 
+<div class="panel-lateral" *ngIf="lineaDetalle">
+  <div class="panel-lateral-header" [style.background-color]="lineaDetalle?.color">
+    <span>{{ lineaDetalle?.numero }} — {{ lineaDetalle?.nombre }}</span>
+    <button (click)="limpiarLinea()">✕</button>
+  </div>
+  <div class="panel-lateral-body">
+    <div *ngFor="let parada of lineaDetalle?.paradas" class="parada-item">
+      <span>📍 {{ parada.nombre }}</span>
+      <span class="parada-codi">{{ parada.codigo }}</span>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="titulo-flotante">
   <span>EMT en Directe</span>
 </div>
@@ -9,14 +24,22 @@
   <span class="logout-label">Sortir</span>
 </button>
 
-<div class="panel-overlay" [class.visible]="mostrarLineas">
+<div class="panel-overlay" [class.visible]="mostrarLineas && !lineaDetalle">
   <div class="panel-handle" (click)="tancarTot()"><div class="handle-bar"></div></div>
   <div class="panel-header"><h2>Línies d'Autobús</h2></div>
   <div class="panel-body">
-    <div *ngFor="let linea of lineas" class="linea-item" (click)="tancarTot()">
-      <div class="linea-numero" [style.background-color]="linea.color">{{ linea.numero }}</div>
-      <div class="linea-info"><span class="linea-nombre">{{ linea.nombre }}</span></div>
-      <span class="linea-arrow">›</span>
+    <div *ngFor="let linea of lineas">
+      <div class="linea-item" (click)="verDetalleLinea(linea.id)">
+        <div class="linea-numero" [style.background-color]="linea.color">{{ linea.numero }}</div>
+        <div class="linea-info"><span class="linea-nombre">{{ linea.nombre }}</span></div>
+        <span class="linea-arrow">{{ lineaExpandida === linea.id ? '∨' : '›' }}</span>
+      </div>
+      <div *ngIf="lineaExpandida === linea.id && lineaDetalle" class="linea-detall">
+        <div *ngFor="let parada of lineaDetalle.paradas" class="parada-item">
+          <span>📍 {{ parada.nombre }}</span>
+          <span class="parada-codi">{{ parada.codigo }}</span>
+        </div>
+      </div>
     </div>
     <div *ngIf="lineas.length === 0" class="panel-empty">
       <span>🚌</span><p>No hi ha línies disponibles</p>
@@ -24,7 +47,7 @@
   </div>
 </div>
 
-<div class="panel-overlay" [class.visible]="mostrarFavoritos">
+<div class="panel-overlay" *ngIf="!lineaDetalle" [class.visible]="mostrarFavoritos">
   <div class="panel-handle" (click)="tancarTot()"><div class="handle-bar"></div></div>
   <div class="panel-header"><h2>parades Favorites</h2></div>
   <div class="panel-body">
@@ -40,14 +63,15 @@
       <button class="fav-delete-btn" (click)="eliminarFavorito(fav.id)">🗑</button>
     </div>
     <div *ngIf="favoritos.length === 0" class="panel-empty">
-      <span>⭐</span><p>No tens cap parada favorita</p>
+      <span>⭐</span><p>no tens cap parada a favorits</p>
     </div>
   </div>
 </div>
 
-<div class="backdrop" [class.visible]="mostrarLineas || mostrarFavoritos" (click)="tancarTot()"></div>
+<div class="backdrop" *ngIf="!lineaDetalle && (mostrarLineas || mostrarFavoritos)"
+     [class.visible]="mostrarLineas || mostrarFavoritos" (click)="tancarTot()"></div>
 
-<div class="barra-inferior">
+<div class="barra-inferior" *ngIf="!lineaDetalle">
   <button class="barra-btn" (click)="toggleLineas()">
     <span class="barra-icon">🚌</span>
     <span class="barra-label">línies</span>
