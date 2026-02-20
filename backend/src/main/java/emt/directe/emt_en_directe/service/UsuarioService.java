@@ -36,6 +36,10 @@ public class UsuarioService {
     //rear usuario(registre)
     public UsuarioResponseDTO createUsuario(UsuarioRequestDTO requestDTO) {
 
+        if (!requestDTO.getPassword().equals(requestDTO.getConfirmPassword())) {
+            throw new RuntimeException("les contrasenyes no coincideixen");
+        }
+
         if (usuarioRepository.existsByUsername(requestDTO.getUsername())) {
             throw new RuntimeException("el username ya existe: " + requestDTO.getUsername());
         }

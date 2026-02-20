@@ -26,8 +26,8 @@ export class AuthService {
     );
   }
 
-  register(username: string, email: string, password: string): Observable<Usuario> {
-    const data: RegisterRequest = { username, email, password };
+  register(username: string, email: string, password: string, confirmPassword: string): Observable<Usuario> {
+    const data: RegisterRequest = { username, email, password, confirmPassword };
     return this.http.post<Usuario>(`${this.usuariosUrl}/register`, data);
   }
 

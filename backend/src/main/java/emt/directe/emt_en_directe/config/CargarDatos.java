@@ -56,7 +56,7 @@ public class CargarDatos implements CommandLineRunner {
         if (lineaRepository.findByNumero("35").isEmpty()) {
             System.out.println("cargando línea 35...");
 
-            Linea linea35 = crearLinea("35", "Aquarium - Can Pastilla", "#FF0000");
+            Linea linea35 = crearLinea("35", "Aquarium - Portitxol", "#FF0000");
             int orden = 1;
 
             orden = agregarPunto(linea35, "P001", "Aquarium", 39.531322838820735, 2.729162786755216, true, orden);
@@ -102,8 +102,26 @@ public class CargarDatos implements CommandLineRunner {
             orden = agregarPunto(linea35, "I026", "punto intermedio", 39.55716429998429, 2.687904699661632, false, orden);
             orden = agregarPunto(linea35, "I027", "punto intermedio", 39.55705794278646, 2.6869454068875753, false, orden);
 
-            agregarPunto(linea35, "P009", "la Gruta", 39.5571716804016, 2.6863633675099265, true, orden);
+            orden=agregarPunto(linea35, "P009", "la Gruta", 39.5571716804016, 2.6863633675099265, true, orden);
+            orden = agregarPunto(linea35, "I028", "punto intermedio", 39.55743162243984, 2.6842556731569416, false, orden);
+            orden = agregarPunto(linea35, "I029", "punto intermedio", 39.55795901127889, 2.682550828700102, false, orden);
 
+            orden=agregarPunto(linea35, "P010", "Llucmajor - Rosa dels Vents", 39.5583296715508, 2.681868582791384, true, orden);
+            orden = agregarPunto(linea35, "I030", "punto intermedio", 39.558592771838626, 2.681272711638426, false, orden);
+            orden = agregarPunto(linea35, "I031", "punto intermedio", 39.558886651679906, 2.6805122979498197, false, orden);
+            orden = agregarPunto(linea35, "I032", "punto intermedio", 39.559052130334095, 2.679632535239657, false, orden);
+            orden = agregarPunto(linea35, "I033", "punto intermedio", 39.55922484314784, 2.6783564869841348, false, orden);
+
+            orden=agregarPunto(linea35, "P011", "Pavelló Josep Amengual - Teatre del Mar", 39.559397003661566, 2.677108413451115, true, orden);
+            orden = agregarPunto(linea35, "I034", "punto intermedio", 39.5595752359222, 2.675901834594857, false, orden);
+            orden = agregarPunto(linea35, "I035", "punto intermedio", 39.56026166181592, 2.674599280611427, false, orden);
+            orden = agregarPunto(linea35, "I036", "punto intermedio", 39.56073455020592, 2.6737862813554742, false, orden);
+
+            orden=agregarPunto(linea35, "P012", "es Molinar", 39.56096804638772, 2.6729834084896047, true, orden);
+            orden = agregarPunto(linea35, "I037", "punto intermedio", 39.561180506041, 2.672161749285568, false, orden);
+            orden = agregarPunto(linea35, "I038", "punto intermedio", 39.56148977084719, 2.671087367339172, false, orden);
+
+            agregarPunto(linea35, "P013", "es Portitxol", 39.559397003661566, 2.677108413451115, true, orden);
 
             System.out.println("línea 35 cargada");
         } else {
@@ -114,7 +132,7 @@ public class CargarDatos implements CommandLineRunner {
         if (lineaRepository.findByNumero("1").isEmpty()) {
             System.out.println("cargando línea 1");
 
-            Linea linea1 = crearLinea("1", "Aeroport", "#0000FF");
+            Linea linea1 = crearLinea("1", "Aeroport - Molinar", "#0000FF");
             int orden = 1;
 
             orden = agregarPunto(linea1, "P101", "Aeroport", 39.54690559350617, 2.7293653266128692, true, orden);
@@ -244,7 +262,7 @@ public class CargarDatos implements CommandLineRunner {
         if (lineaRepository.findByNumero("5").isEmpty()) {
             System.out.println("cargando la línea 5...");
 
-            Linea linea5 = crearLinea("5", "Es Rafal Nou - Pl. Espanya", "#FFFF00");
+            Linea linea5 = crearLinea("5", "Es Rafal Nou - Pl. Espanya", "#FF8C00");
             int orden = 1;
 
 

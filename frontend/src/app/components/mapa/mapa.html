@@ -1,12 +1,12 @@
 <div id="map"></div>
 
 <div class="panel-lateral" *ngIf="lineaDetalle">
-  <div class="panel-lateral-header" [style.background-color]="lineaDetalle?.color">
-    <span>{{ lineaDetalle?.numero }} — {{ lineaDetalle?.nombre }}</span>
+  <div class="panel-lateral-header" [style.background-color]="lineaDetalle.color">
+    <span>{{ lineaDetalle.numero }} — {{ lineaDetalle.nombre }}</span>
     <button (click)="limpiarLinea()">✕</button>
   </div>
   <div class="panel-lateral-body">
-    <div *ngFor="let parada of lineaDetalle?.paradas" class="parada-item">
+    <div *ngFor="let parada of lineaDetalle.paradas" class="parada-item">
       <span>📍 {{ parada.nombre }}</span>
       <span class="parada-codi">{{ parada.codigo }}</span>
     </div>

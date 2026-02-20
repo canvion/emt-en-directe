@@ -23,4 +23,7 @@ public class UsuarioRequestDTO {
     @Size(min = 6, message = "la contraseña debe tener mínimo 6 caracteres")
     private String password;
 
+    @NotBlank(message = " confirmació de contrasenya obligatòria")
+    private String confirmPassword;
+
 }

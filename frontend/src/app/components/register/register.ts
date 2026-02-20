@@ -31,7 +31,8 @@ export class RegisterComponent {
   registerForm: FormGroup = this.fb.group({
     username: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmPassword: ['', [Validators.required]]
   });
 
   errorMessage = '';
@@ -41,9 +42,9 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    const { username, email, password } = this.registerForm.value;
+    const { username, email, password, confirmPassword } = this.registerForm.value;
 
-    this.authService.register(username, email, password).subscribe({
+    this.authService.register(username, email, password, confirmPassword).subscribe({
       next: () => {
         this.successMessage = 'regitre correcte!! Redirigint al login...';
         setTimeout(() => {
