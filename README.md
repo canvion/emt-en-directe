@@ -11,7 +11,7 @@ L'usuari pot explorar les línies i parades sobre un mapa interactiu, desar les 
 ## Instal·lació i execució
 
 ### Requisits previs
-- Java 21
+- Java 17
 - Maven
 - Angular 
 - MySQL
@@ -48,10 +48,11 @@ L'aplicació s'obre a `http://localhost:4200`.
 
 ---
 
-##  Credencials de prova
+## Credencials de prova
 
-Per accedir a l'aplicació cal crear un usuari des del formulari de registre.
-
+| Usuari | Contrasenya |
+|--------|-------------|
+| usuari1 | password |
 ---
 
 ##  Captures de pantalla
@@ -95,15 +96,67 @@ Per accedir a l'aplicació cal crear un usuari des del formulari de registre.
 
 <img width="618" height="339" alt="image" src="https://github.com/user-attachments/assets/777c3c30-b120-44c9-ac4a-f1dba80bee15" />
 
+---
 
-##  Funcionalitats
+## Funcionalitats
 
--  Mapa interactiu centrat a Palma amb totes les parades de les línies
--  Visualització en temps real dels busos simulats (polling cada 10 segons)
--  Els busos fan el recorregut d'anada i tornada, amb possibilitat d'aturada simulant atascos
--  Filtre de parades per línia
--  Sistema de parades favorites per a usuaris registrats
--  Registre i login d'usuaris amb autenticació JWT
+- Mapa interactiu centrat a Palma amb totes les parades de les línies
+- Visualització en temps real dels busos simulats (polling cada 10 segons)
+- Filtre de parades amb una línia que les uneix en clickar una línia
+- Sistema de parades favorites per a usuaris registrats
+- Registre i login d'usuaris amb autenticació JWT
+
+---
+
+## Com funciona la simulació dels busos
+
+Els busos es mouen punt a punt pel recorregut real de la línia.
+El backend avança la posició del bus a cada crida, amb una probabilitat d'aturada que simula possibles atascos. 
+El frontend fa polling cada 10 segons per actualitzar la posició al mapa automàticament.
+
+---
+
+## Arquitectura Backend
+
+Desenvolupat amb Spring Boot 3 + Java + MySQL, seguint el patró 
+Controller-Service-Repository.
+
+### Entitats i Model de Dades
+- `Usuario`, `Linea`, `Parada`, `Bus`, `Favorito`
+- `LineaParada` — relació N:M entre línies i parades, amb ordre i camp `esParada` per diferenciar parades reals de punts intermedios
+
+### Autenticació JWT
+El sistema usa BCrypt per encriptar contrasenyes i JWT amb durada de 24h.  Compost per `JwtAuthenticationFilter`, `JwtTokenUtil` i `CustomUserDetailsService`.
+
+### Seguretat i CORS
+CORS configurat per a `localhost:4200`. 
+Rutes públiques: auth, register, lineas, paradas, buses. 
+Rutes protegides: favoritos (requereixen JWT).
+
+### Dades Inicials
+5 línies reals de Palma (1, 5, 23, 33, 35) carregades automàticament a l'inici mitjançant `CargarDatos.java` , amb coordenades reals de parades i punts intermedis.
+
+---
+
+## Disseny i Arquitectura Frontend
+
+El frontend és una SPA desenvolupada amb Angular standalone i TypeScript.
+
+### Interfície
+El mapa ocupa el 100% de la pantalla com a vista principal. 
+La interfície flotant segueix un estil inspirat en iOS: títol centrat a la part superior, botó de login/logout a la dreta, i barra de navegació inferior amb accés a Línies i Favorits.
+Els panells de Línies i Favorits s'obren des de baix amb animació CSS.
+
+### Autenticació al Frontend
+El token JWT es guarda a `localStorage` i s'afegeix automàticament a totes les peticions mitjançant un interceptor. 
+Un guard protegeix les funcionalitats de favorits, que només són visibles amb sessió iniciada.
+
+### Serveis
+- `AuthService` — login, registre i logout  
+- `ParadaService` — càrrega de parades  
+- `LineaService` — línies i detall per id  
+- `BusService` — posicions simulades dels busos  
+- `FavoritoService` — gestió de favorits
 
 ---
 
@@ -224,7 +277,15 @@ frontend/
 
   ```
 
+---
 
+## Tecnologies
+- **Backend:** Spring Boot + Spring Security + JWT
+- **Base de dades:** MySQL + Spring Data JPA
+- **Frontend:** Angular + Angular Material
+- **Mapes:** Leaflet.js
+
+---
 
 ##  Documentació de l'API
 

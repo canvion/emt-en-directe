@@ -14,7 +14,7 @@ Login d'usuari. Retorna un token JWT.
 ```json
 {
   "username": "usuari1",
-  "password": "123456"
+  "password": "password"
 }
 ```
 - **Resposta 200:**
@@ -43,7 +43,7 @@ Registre d'un nou usuari.
 {
   "username": "usuari1",
   "email": "usuari1@email.com",
-  "password": "123456"
+  "password": "password"
 }
 ```
 - **Resposta 201:** Usuari creat
@@ -117,7 +117,7 @@ Llista totes les línies amb les seves parades.
   {
     "id": 1,
     "numero": "35",
-    "nombre": "Aquarium - Can Pastilla",
+    "nombre": "Aquarium - Portitxol",
     "color": "#FF0000",
     "createdAt": "2025-01-01T10:00:00",
     "updatedAt": "2025-01-01T10:00:00",
@@ -167,7 +167,7 @@ Llista totes les parades amb les línies que hi passen.
       {
         "id": 1,
         "numero": "35",
-        "nombre": "Aquarium - Can Pastilla",
+        "nombre": "Aquarium - Portitxol",
         "color": "#FF0000",
         "orden": 1
       }
@@ -200,7 +200,7 @@ Retorna la posició actualitzada dels busos d'una línia. Cada crida mou el bus 
     "id": 1,
     "lineaId": 1,
     "lineaNumero": "35",
-    "lineaNombre": "Aquarium - Can Pastilla",
+    "lineaNombre": "Aquarium - Portitxol",
     "lineaColor": "#FF0000",
     "latitud": 39.532123,
     "longitud": 2.727730,
@@ -235,7 +235,7 @@ Llista les parades favorites de l'usuari autenticat.
     "paradaLatitud": 39.531322,
     "paradaLongitud": 2.729162,
     "createdAt": "2025-01-01T10:00:00",
-    "lineas": ["35 - Aquarium - Can Pastilla"]
+    "lineas": ["35 - Aquarium - Portitxol"]
   }
 ]
 ```
